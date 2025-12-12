@@ -136,6 +136,42 @@ for (let i = 0; i < formInputs.length; i++) {
 
 
 
+// certificate modal variables
+const certificateItems = document.querySelectorAll("[data-certificate-item]");
+const certificateModal = document.querySelector("[data-certificate-modal]");
+const certificateModalImg = document.querySelector("[data-certificate-modal-img]");
+const certificateModalCloseBtn = document.querySelector("[data-certificate-modal-close]");
+const certificateOverlay = document.querySelector("[data-certificate-overlay]");
+
+// certificate modal toggle function
+const certificateModalFunc = function () {
+  certificateModal.classList.toggle("active");
+  certificateOverlay.classList.toggle("active");
+}
+
+// add click event to all certificate items
+if (certificateItems.length > 0) {
+  for (let i = 0; i < certificateItems.length; i++) {
+    certificateItems[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      certificateModalImg.src = this.querySelector("img").src;
+      certificateModalImg.alt = this.querySelector("img").alt;
+      certificateModalFunc();
+    });
+  }
+}
+
+// add click event to certificate modal close button
+if (certificateModalCloseBtn) {
+  certificateModalCloseBtn.addEventListener("click", certificateModalFunc);
+}
+
+if (certificateOverlay) {
+  certificateOverlay.addEventListener("click", certificateModalFunc);
+}
+
+
+
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
